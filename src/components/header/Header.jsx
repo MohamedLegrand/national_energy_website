@@ -645,7 +645,7 @@ const Header = () => {
               loading="eager"
             />
             <div className="ne-logo-text">
-              <span className="ne-logo-brand">National Energy</span>
+              <span className="ne-logo-brand">National Energy SARL</span>
               <span className="ne-logo-sub">Stations &amp; Solutions</span>
             </div>
           </div>
@@ -723,4 +723,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header;    
