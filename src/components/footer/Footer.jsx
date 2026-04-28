@@ -667,14 +667,14 @@ const Footer = () => {
             </div>
 
             <div className="ft-badge">
-              <span className="ft-badge-dot" />
+              <span className="ft-badge-dot" /> 
               Yaoundé, Cameroun
             </div>
 
             <div className="ft-legal">
-              <Link to="/mentions-legales" className="ft-legal-link">Mentions légales</Link>
+              <Link to="/mentions" className="ft-legal-link">Mentions légales</Link>
               <span className="ft-legal-sep">·</span>
-              <Link to="/politique-confidentialite" className="ft-legal-link">Politique de confidentialité</Link>
+              <Link to="/politiques" className="ft-legal-link">Politique de confidentialité</Link>
             </div>
           </div>
 

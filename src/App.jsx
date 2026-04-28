@@ -6,6 +6,8 @@ import Accueil from "./pages/accueil/Accueil";
 import Contact from "./pages/contact/Contact";
 import NotFound from "./pages/NotFound";
 import Apropos from "./pages/apropos/Apropos";
+import Mentions from "./pages/mentions/Mentions";
+import Politiques from "./pages/politiques/Politiques";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/apropos" element={<Apropos />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/mentions" element={<Mentions />} />
+            <Route path="/politiques" element={<Politiques />} />
           </Routes>
         </main>
         <Footer />
