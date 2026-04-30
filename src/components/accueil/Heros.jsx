@@ -153,15 +153,8 @@ const Heros = () => {
           backgroundImage: `url(${currentSlide.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          transition: `opacity ${TRANSITION_DURATION}ms ease-in-out, filter 1.8s ease-out`,
+          transition: `opacity ${TRANSITION_DURATION}ms ease-in-out`,
           opacity: transitioning ? 0 : 1,
-          filter: transitioning
-            ? "blur(0px) brightness(0.7)"
-            : phase === "title"
-            ? "blur(14px) brightness(0.6)"
-            : phase === "desc"
-            ? "blur(5px) brightness(0.75)"
-            : "blur(0px) brightness(1)",
           zIndex: 0,
         }}
       />
@@ -176,7 +169,6 @@ const Heros = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: transitioning ? 1 : 0,
-            filter: "blur(14px) brightness(0.6)",
             transition: `opacity ${TRANSITION_DURATION}ms ease-in-out`,
             zIndex: 0,
           }}

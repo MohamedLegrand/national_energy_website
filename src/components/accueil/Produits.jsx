@@ -28,7 +28,7 @@ const Produits = () => {
     { 
       nom: "Points consommateurs", 
       description: "Notre concept innovant : une mini-station installée directement chez vous ou dans votre entreprise ! Pompe à carburant + cuve enterrée ou aérienne, installée par nos experts. Idéal pour les particuliers fortunés, les grandes entreprises, les ministères, les flottes de véhicules, les hôtels et les collectivités. Bénéficiez d'un ravitaillement privé, sécurisé et sans déplacement.",
-      image: "/images/produits/pont.jpg",
+      image: "/images/produits/point.jpeg",
       caracteristiques: ["Installation clé en main", "Cuve + Pompe", "Ravitaillement privé", "Gestion personnalisée"]
     }
   ];
