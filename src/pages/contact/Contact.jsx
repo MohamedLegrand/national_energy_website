@@ -61,8 +61,14 @@ const Contact = () => {
     },
   };
 
-  const mapEmbedUrl =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15907.82927362098!2d11.570295!3d3.900619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcf9e7f4f8f8f%3A0x8b3c5c8f5b5c5c5c!2sOdza%2C%20Yaound%C3%A9%2C%20Cameroun!5e0!3m2!1sfr!2scm!4v1700000000000!5m2!1sfr!2scm";
+  // Coordonnées précises de la station National Energy à Odza
+  const stationCoords = { lat: 3.8480, lng: 11.5021 };
+  
+  // URL Google Maps avec marqueur personnalisé pointant vers la station
+  const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyB_1Dq9M-T1xkJqS7xo0JwR0RrL9w2KxcQ&q=National+Energy+Odza+Yaoundé+Cameroun&center=${stationCoords.lat},${stationCoords.lng}&zoom=17&maptype=roadmap`;
+  
+  // Fallback URL sans API key
+  const mapFallbackUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15907.82927362098!2d${stationCoords.lng - 0.01}!3d${stationCoords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcf9e7f4f8f8f%3A0x8b3c5c8f5b5c5c5c!2sOdza%2C%20Yaound%C3%A9%2C%20Cameroun!5e0!3m2!1sfr!2scm!4v1700000000000!5m2!1sfr!2scm`;
 
   return (
     <>
@@ -93,7 +99,6 @@ const Contact = () => {
           object-position: center;
         }
 
-        /* Overlay dégradé vert sombre pour cohérence avec le header */
         .cp-hero-overlay {
           position: absolute;
           inset: 0;
@@ -105,7 +110,6 @@ const Contact = () => {
           );
         }
 
-        /* Accent vert diagonal en haut à droite */
         .cp-hero-accent {
           position: absolute;
           top: 0;
@@ -174,7 +178,6 @@ const Contact = () => {
           line-height: 1.65;
         }
 
-        /* Breadcrumb */
         .cp-breadcrumb {
           position: absolute;
           top: 24px;
@@ -210,14 +213,12 @@ const Contact = () => {
           color: rgba(255, 255, 255, 0.85);
         }
 
-        /* ===== BODY ===== */
         .cp-body {
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 2rem 5rem;
         }
 
-        /* Card flottante qui chevauche le hero */
         .cp-cards-row {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -273,7 +274,6 @@ const Contact = () => {
           font-family: 'Outfit', sans-serif;
         }
 
-        /* ===== MAIN GRID ===== */
         .cp-grid {
           display: grid;
           grid-template-columns: 1fr 2fr;
@@ -281,7 +281,6 @@ const Contact = () => {
           align-items: start;
         }
 
-        /* ===== SIDEBAR COORDONNÉES ===== */
         .cp-sidebar {
           position: sticky;
           top: 90px;
@@ -380,59 +379,6 @@ const Contact = () => {
           color: #34D399;
         }
 
-        /* Réseaux sociaux */
-        .cp-social-card {
-          background: #0D3026;
-          border-radius: 16px;
-          padding: 1.5rem 1.75rem;
-          box-shadow: 0 4px 20px rgba(13, 48, 38, 0.2);
-        }
-
-        .cp-social-title {
-          font-family: 'Outfit', sans-serif;
-          font-size: 13px;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.5);
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin-bottom: 14px;
-        }
-
-        .cp-social-links {
-          display: flex;
-          gap: 10px;
-        }
-
-        .cp-social-btn {
-          flex: 1;
-          height: 40px;
-          border-radius: 9px;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: rgba(255, 255, 255, 0.7);
-          text-decoration: none;
-          font-size: 12px;
-          font-weight: 600;
-          font-family: 'Outfit', sans-serif;
-          transition: background 0.15s, border-color 0.15s, color 0.15s;
-          gap: 6px;
-        }
-
-        .cp-social-btn:hover {
-          background: rgba(52, 211, 153, 0.15);
-          border-color: rgba(52, 211, 153, 0.4);
-          color: #34D399;
-        }
-
-        .cp-social-btn svg {
-          width: 14px;
-          height: 14px;
-        }
-
-        /* Horaires badge */
         .cp-hours-badge {
           display: flex;
           align-items: center;
@@ -470,7 +416,6 @@ const Contact = () => {
           font-weight: 600;
         }
 
-        /* ===== FORMULAIRE ===== */
         .cp-form-card {
           background: #fff;
           border-radius: 20px;
@@ -576,7 +521,6 @@ const Contact = () => {
           line-height: 1.65;
         }
 
-        /* Bouton soumettre */
         .cp-submit {
           width: 100%;
           padding: 14px;
@@ -616,7 +560,6 @@ const Contact = () => {
           height: 18px;
         }
 
-        /* Alerts */
         .cp-alert {
           border-radius: 10px;
           padding: 13px 16px;
@@ -654,7 +597,6 @@ const Contact = () => {
           margin-top: 14px;
         }
 
-        /* ===== CARTE MAPS ===== */
         .cp-map-section {
           margin-top: 40px;
         }
@@ -693,13 +635,71 @@ const Contact = () => {
           overflow: hidden;
           box-shadow: 0 2px 20px rgba(13, 48, 38, 0.08);
           border: 1px solid rgba(52, 211, 153, 0.08);
+          position: relative;
         }
 
         .cp-map-frame {
           width: 100%;
-          height: 340px;
+          height: 380px;
           display: block;
           border: none;
+        }
+
+        /* Pin personnalisé sur la carte via CSS */
+        .cp-map-pin-overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 10;
+          pointer-events: none;
+        }
+
+        .cp-map-pin {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          animation: cp-pin-bounce 2s ease-in-out infinite;
+        }
+
+        .cp-pin-label {
+          background: #0D3026;
+          color: white;
+          font-size: 10px;
+          font-weight: 700;
+          padding: 4px 10px;
+          border-radius: 20px;
+          white-space: nowrap;
+          margin-bottom: 6px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+          font-family: 'Outfit', sans-serif;
+          letter-spacing: 0.05em;
+        }
+
+        .cp-pin-icon {
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 16px solid #E65100;
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .cp-pin-dot {
+          position: absolute;
+          top: -8px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 8px;
+          height: 8px;
+          background: #fff;
+          border-radius: 50%;
+          z-index: 2;
+        }
+
+        @keyframes cp-pin-bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
         }
 
         .cp-map-footer {
@@ -709,6 +709,8 @@ const Contact = () => {
           align-items: center;
           justify-content: space-between;
           border-top: 1px solid #F0F0F0;
+          flex-wrap: wrap;
+          gap: 12px;
         }
 
         .cp-map-address {
@@ -732,7 +734,7 @@ const Contact = () => {
           color: #0D3026;
           text-decoration: none;
           font-family: 'Outfit', sans-serif;
-          display: flex;
+          display: inline-flex;
           align-items: center;
           gap: 5px;
           border: 1.5px solid rgba(13, 48, 38, 0.2);
@@ -753,7 +755,18 @@ const Contact = () => {
           height: 13px;
         }
 
-        /* ===== RESPONSIVE ===== */
+        .cp-station-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: #F0FDF4;
+          border-radius: 8px;
+          padding: 4px 10px;
+          font-size: 11px;
+          color: #059669;
+          font-weight: 600;
+        }
+
         @media (max-width: 1024px) {
           .cp-grid {
             grid-template-columns: 1fr;
@@ -780,6 +793,8 @@ const Contact = () => {
           .cp-form-grid { grid-template-columns: 1fr; }
           .cp-sidebar { grid-template-columns: 1fr; }
           .cp-breadcrumb { padding: 0 1.25rem; }
+          .cp-map-frame { height: 280px; }
+          .cp-map-footer { flex-direction: column; align-items: flex-start; }
         }
 
         @keyframes spin {
@@ -798,18 +813,19 @@ const Contact = () => {
             src="/images/contact.jpg"
             alt="National Energy — Contactez-nous"
             className="cp-hero-img"
+            onError={(e) => {
+              e.target.src = "https://images.unsplash.com/photo-1593941707882-713a9870dd1b?w=1200&q=80";
+            }}
           />
           <div className="cp-hero-overlay" />
           <div className="cp-hero-accent" />
 
-          {/* Breadcrumb */}
           <div className="cp-breadcrumb">
             <a href="/">Accueil</a>
             <span className="cp-breadcrumb-sep">›</span>
             <span className="cp-breadcrumb-current">Contact</span>
           </div>
 
-          {/* Contenu hero */}
           <div className="cp-hero-content">
             <div className="cp-hero-eyebrow">
               <span className="cp-hero-eyebrow-dot" />
@@ -871,11 +887,9 @@ const Contact = () => {
             {/* ===== SIDEBAR ===== */}
             <aside className="cp-sidebar">
 
-              {/* Coordonnées */}
               <div className="cp-info-card">
                 <div className="cp-info-card-title">Nos coordonnées</div>
 
-                {/* Adresse */}
                 <div className="cp-info-item">
                   <div className="cp-info-icon">
                     <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -889,7 +903,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Téléphone */}
                 <div className="cp-info-item">
                   <div className="cp-info-icon">
                     <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -906,7 +919,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="cp-info-item">
                   <div className="cp-info-icon">
                     <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -923,7 +935,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Horaires */}
                 <div className="cp-info-item" style={{ flexDirection: "column", gap: "10px" }}>
                   <div style={{ display: "flex", alignItems: "flex-start", gap: "13px" }}>
                     <div className="cp-info-icon">
@@ -950,60 +961,71 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Réseaux sociaux */}
-              <div className="bg-white rounded-xl shadow-md p-5 mt-6">
-                    <div className="font-bold text-base text-primary border-b-2 border-secondary pb-2 mb-4 inline-block">
-                        Suivez-nous
-                    </div>
-                    <div className="flex flex-col gap-3">
-                        
-                        <a 
-                        href="https://facebook.com/nationalenergy" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#1877f2] hover:text-white transition-all duration-200 hover:translate-x-1"
-                        >
-                        <img 
-                            src="/images/reseaux/facebook.jpg" 
-                            alt="Facebook"
-                            className="w-7 h-7 rounded-lg object-cover"
-                        />
-                        <span className="flex-1 text-sm font-medium">Facebook</span>
-                        <span className="text-gray-400 group-hover:text-white">→</span>
-                        </a>
-                        
-                        <a 
-                        href="https://linkedin.com/company/national-energy" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#0077b5] hover:text-white transition-all duration-200 hover:translate-x-1"
-                        >
-                        <img 
-                            src="/images/reseaux/linkedin.jpg" 
-                            alt="LinkedIn"
-                            className="w-7 h-7 rounded-lg object-cover"
-                        />
-                        <span className="flex-1 text-sm font-medium">LinkedIn</span>
-                        <span className="text-gray-400 group-hover:text-white">→</span>
-                        </a>
-                        
-                        <a 
-                        href="https://wa.me/237673787926" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#25D366] hover:text-white transition-all duration-200 hover:translate-x-1"
-                        >
-                        <img 
-                            src="/images/reseaux/whatsapp.jpg" 
-                            alt="WhatsApp"
-                            className="w-7 h-7 rounded-lg object-cover"
-                        />
-                        <span className="flex-1 text-sm font-medium">WhatsApp</span>
-                        <span className="text-gray-400 group-hover:text-white">→</span>
-                        </a>
-                    </div>
-                    </div>
+              <div className="bg-white rounded-xl shadow-md p-5">
+                <div className="font-bold text-base text-primary border-b-2 border-secondary pb-2 mb-4 inline-block">
+                  Suivez-nous
+                </div>
+                <div className="flex flex-col gap-3">
+                  <a 
+                    href="https://facebook.com/nationalenergy" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#1877f2] hover:text-white transition-all duration-200 hover:translate-x-1"
+                  >
+                    <img 
+                      src="/images/reseaux/facebook.jpg" 
+                      alt="Facebook"
+                      className="w-7 h-7 rounded-lg object-cover"
+                    />
+                    <span className="flex-1 text-sm font-medium">Facebook</span>
+                    <span className="text-gray-400">→</span>
+                  </a>
+                  <a 
+                    href="https://linkedin.com/company/national-energy" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#0077b5] hover:text-white transition-all duration-200 hover:translate-x-1"
+                  >
+                    <img 
+                      src="/images/reseaux/linkedin.jpg" 
+                      alt="LinkedIn"
+                      className="w-7 h-7 rounded-lg object-cover"
+                    />
+                    <span className="flex-1 text-sm font-medium">LinkedIn</span>
+                    <span className="text-gray-400">→</span>
+                  </a>
+                  <a 
+                    href="https://wa.me/237673787926" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#25D366] hover:text-white transition-all duration-200 hover:translate-x-1"
+                  >
+                    <img 
+                      src="/images/reseaux/whatsapp.jpg" 
+                      alt="WhatsApp"
+                      className="w-7 h-7 rounded-lg object-cover"
+                    />
+                    <span className="flex-1 text-sm font-medium">WhatsApp</span>
+                    <span className="text-gray-400">→</span>
+                  </a>
+                </div>
+              </div>
 
+              {/* Badge station */}
+              <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-4 border border-primary/20">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-bold text-primary text-sm">Notre station</p>
+                    <p className="text-xs text-gray-500">Ouverte 24h/24 - 7j/7</p>
+                  </div>
+                </div>
+              </div>
             </aside>
 
             {/* ===== FORMULAIRE ===== */}
@@ -1141,40 +1163,69 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* ===== CARTE GOOGLE MAPS ===== */}
+          {/* ===== CARTE GOOGLE MAPS AVEC POINTEUR STATION ===== */}
           <div className="cp-map-section">
             <div className="cp-map-header">
-              <div className="cp-map-title">Notre localisation</div>
+              <div className="cp-map-title">📍 Notre station à Odza</div>
               <div className="cp-map-pill">Yaoundé · Cameroun</div>
+              <div className="cp-station-badge">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                Station ouverte 24h/24
+              </div>
             </div>
             <div className="cp-map-card">
-              <iframe
-                src={mapEmbedUrl}
-                className="cp-map-frame"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Carte National Energy Yaoundé Odza"
-              />
+              <div style={{ position: "relative" }}>
+                <iframe
+                  src={mapFallbackUrl}
+                  className="cp-map-frame"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Carte National Energy Yaoundé Odza - Station"
+                />
+                {/* Pin personnalisé superposé */}
+                <div className="cp-map-pin-overlay">
+                  <div className="cp-map-pin">
+                    <div className="cp-pin-label">NATIONAL ENERGY</div>
+                    <div className="cp-pin-icon"></div>
+                    <div className="cp-pin-dot"></div>
+                  </div>
+                </div>
+              </div>
               <div className="cp-map-footer">
                 <div className="cp-map-address">
                   <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  Odza, montée collège Adventiste, Yaoundé, Cameroun
+                  <span>
+                    <strong>Station National Energy</strong> — Montée Collège Adventiste, Odza, Yaoundé
+                  </span>
                 </div>
-                <a
-                  href="https://maps.google.com/?q=Odza,Yaoundé,Cameroun"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cp-map-directions"
-                >
-                  Itinéraire
-                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <a
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${stationCoords.lat},${stationCoords.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cp-map-directions"
+                  >
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                    Itinéraire
+                  </a>
+                  <a
+                    href={`https://www.google.com/maps/place/${stationCoords.lat},${stationCoords.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cp-map-directions"
+                  >
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Agrandir
+                  </a>
+                </div>
               </div>
             </div>
           </div>

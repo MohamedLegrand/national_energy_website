@@ -544,7 +544,7 @@ const Apropos = () => {
           opacity: 0.8;
         }
 
-        /* PDG card - IMAGE ENTIÈREMENT VISIBLE ET GRAND FORMAT */
+        /* PDG card - IMAGE ENTIÈREMENT VISIBLE ET TRÈS GRANDE */
         .ap-pdg {
           background: #fff;
           border-radius: 24px;
@@ -562,8 +562,6 @@ const Apropos = () => {
         .ap-pdg-img-wrap {
           width: 100%;
           height: auto;
-          max-height: 450px;
-          overflow: hidden;
           background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
           display: flex;
           align-items: center;
@@ -573,9 +571,10 @@ const Apropos = () => {
         .ap-pdg-avatar {
           width: 100%;
           height: auto;
-          max-height: 450px;
+          min-height: 500px;
+          max-height: 650px;
           object-fit: cover;
-          object-position: center top;
+          object-position: center 30%;
           display: block;
           transition: transform 0.5s ease;
         }
@@ -586,7 +585,7 @@ const Apropos = () => {
 
         .ap-pdg-avatar-placeholder {
           width: 100%;
-          height: 400px;
+          height: 550px;
           background: var(--green-mid);
           display: flex;
           align-items: center;
@@ -598,7 +597,13 @@ const Apropos = () => {
         }
 
         .ap-pdg-body {
-          padding: 1.5rem 2rem 2rem;
+          padding: 2rem 2rem 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        .ap-pdg-header {
           display: flex;
           align-items: flex-start;
           gap: 1rem;
@@ -606,7 +611,7 @@ const Apropos = () => {
 
         .ap-pdg-orange-bar {
           width: 5px;
-          height: 65px;
+          height: 70px;
           background: var(--orange);
           border-radius: 3px;
           flex-shrink: 0;
@@ -619,7 +624,7 @@ const Apropos = () => {
 
         .ap-pdg-name {
           font-family: 'Syne', sans-serif;
-          font-size: 1.3rem;
+          font-size: 1.5rem;
           font-weight: 800;
           color: var(--text-dark);
           margin-bottom: 5px;
@@ -628,21 +633,36 @@ const Apropos = () => {
 
         .ap-pdg-title {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           color: var(--orange);
           text-transform: uppercase;
           letter-spacing: 0.12em;
           font-weight: 700;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
+        }
+
+        .ap-pdg-description {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: 0.95rem;
+          color: var(--text-mid);
+          line-height: 1.7;
+          margin-top: 0.5rem;
+        }
+
+        .ap-pdg-description p {
+          margin-bottom: 0.75rem;
         }
 
         .ap-pdg-quote {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.95rem;
-          color: var(--text-mid);
+          font-size: 1rem;
+          color: var(--orange);
           line-height: 1.55;
           font-style: italic;
-          font-weight: 500;
+          font-weight: 600;
+          border-left: 3px solid var(--orange-light);
+          padding-left: 1.25rem;
+          margin-top: 0.75rem;
         }
 
         .ap-values {
@@ -714,6 +734,10 @@ const Apropos = () => {
           .ap-inner {
             padding: 0 2rem;
           }
+          .ap-pdg-avatar {
+            min-height: 400px;
+            max-height: 500px;
+          }
         }
 
         @media (max-width: 640px) {
@@ -725,10 +749,14 @@ const Apropos = () => {
           .ap-features { grid-template-columns: 1fr; }
           .ap-img { height: 260px; }
           .ap-main-watermark { display: none; }
-          .ap-pdg-name { font-size: 1.1rem; }
+          .ap-pdg-name { font-size: 1.2rem; }
           .ap-pdg-title { font-size: 0.7rem; }
-          .ap-pdg-quote { font-size: 0.85rem; }
-          .ap-pdg-body { padding: 1rem 1.25rem 1.25rem; }
+          .ap-pdg-description { font-size: 0.85rem; }
+          .ap-pdg-body { padding: 1.25rem; }
+          .ap-pdg-avatar {
+            min-height: 320px;
+            max-height: 400px;
+          }
         }
       `}</style>
 
@@ -773,8 +801,6 @@ const Apropos = () => {
                 </svg>
               </a>
             </div>
-
-          
           </div>
 
           {/* Scroll indicator */}
@@ -891,7 +917,7 @@ const Apropos = () => {
 
               {/* ── RIGHT COLUMN ─────────────────────── */}
               <div className="ap-right">
-                {/* Image */}
+                {/* Image station */}
                 <div className="ap-img-frame">
                   <div className="ap-img-wrap">
                     <img
@@ -905,44 +931,60 @@ const Apropos = () => {
                   </div>
                 </div>
 
-                {/* PDG Card - IMAGE ENTIÈREMENT VISIBLE ET GRAND FORMAT */}
-                <div className="bg-white rounded-2xl border border-[rgba(46,125,50,0.12)] shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-  {/* Image - grand format 500px */}
-  <div className="w-full h-[500px] md:h-[500px] sm:h-[380px] overflow-hidden bg-gradient-to-br from-[#0D2B0F] to-[#2E7D32] flex items-center justify-center">
-    <img
-      src="/images/pdg.jpeg"
-      alt="PDG National Energy"
-      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
-      onError={(e) => {
-        e.target.style.display = 'none';
-        const parent = e.target.parentNode;
-        const placeholder = document.createElement('div');
-        placeholder.className = 'w-full h-full bg-gradient-to-br from-[#0D2B0F] to-[#2E7D32] flex items-center justify-center text-white font-playfair text-6xl font-black';
-        placeholder.textContent = 'PDG';
-        parent.appendChild(placeholder);
-      }}
-    />
-  </div>
-  
-  {/* Corps de la carte */}
-  <div className="p-6 md:p-7 flex items-start gap-4">
-    {/* Barre orange */}
-    <div className="w-1 h-[72px] bg-[#E65100] rounded-full flex-shrink-0 mt-1" />
-    
-    {/* Informations */}
-    <div className="flex-1">
-      <h3 className="font-syne text-xl md:text-2xl font-extrabold text-[#111A0F] mb-1 tracking-tight">
-        [Nom du PDG]
-      </h3>
-      <p className="font-instrument text-xs md:text-sm text-[#E65100] uppercase tracking-wider font-bold mb-3">
-        Président Directeur Général
-      </p>
-      <p className="font-instrument text-sm md:text-base text-[#3D4A3C] leading-relaxed italic">
-        "Une énergie nationale pour un Cameroun prospère"
-      </p>
-    </div>
-  </div>
-</div>
+                {/* PDG Card - IMAGE TRÈS GRANDE ET ENTIÈREMENT VISIBLE */}
+                <div className="ap-pdg">
+                  {/* Photo du directeur - très grand format */}
+                  <div className="ap-pdg-img-wrap">
+                    <img
+                      src="/images/pdg.jpeg"
+                      alt="M. Keedi Jean Joel - PDG National Energy"
+                      className="ap-pdg-avatar"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        const parent = e.target.parentNode;
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'ap-pdg-avatar-placeholder';
+                        placeholder.textContent = 'M. Keedi Jean Joel';
+                        parent.appendChild(placeholder);
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Corps de la carte avec la description complète */}
+                  <div className="ap-pdg-body">
+                    <div className="ap-pdg-header">
+                      <div className="ap-pdg-orange-bar" />
+                      <div className="ap-pdg-info">
+                        <h3 className="ap-pdg-name">
+                          M. Keedi Jean Joel
+                        </h3>
+                        <p className="ap-pdg-title">
+                          Président Directeur Général
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Description complète */}
+                    <div className="ap-pdg-description">
+                      <p>
+                        Monsieur Jean Joël Keedi, Président-Directeur Général de National Energy SARL, 
+                        se distingue par une solide expérience professionnelle et une réputation fondée 
+                        sur la rigueur et le sérieux.
+                      </p>
+                      <p>
+                        Véritable incarnation du manager moderne, il a su, à la tête de plusieurs entreprises, 
+                        développer des structures performantes, à la fois solides et innovantes. Sa vision 
+                        stratégique repose notamment sur une politique d'adaptation continue, tenant compte 
+                        des besoins spécifiques et des particularités de chaque client.
+                      </p>
+                    </div>
+                    
+                    {/* Citation */}
+                    <div className="ap-pdg-quote">
+                      "Une énergie nationale pour un Cameroun prospère"
+                    </div>
+                  </div>
+                </div>
 
                 {/* Values */}
                 <div className="ap-values">

@@ -22,24 +22,41 @@ const Header = () => {
   }, [location]);
 
   const navItems = [
-    { name: "Accueil", href: "#accueil" },
-    { name: "Produits", href: "#produits" },
-    { name: "Stations", href: "#stations" },
-    { name: "Tarifs", href: "#tarifs" },
+    { name: "Accueil", href: "#accueil", isHome: true },
+    { name: "Produits", href: "#produits", isHome: false },
+    { name: "Stations", href: "#stations", isHome: false },
+    { name: "Tarifs", href: "#tarifs", isHome: false },
   ];
 
-  const handleAnchorClick = async (e, href) => {
+  // Fonction pour remonter en haut de la page (Accueil)
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleAnchorClick = async (e, href, isHome = false) => {
     e.preventDefault();
     setIsMenuOpen(false);
     
-    // Si on n'est pas sur la page d'accueil, naviguer d'abord vers "/"
+    // Si c'est l'accueil, remonter directement en haut
+    if (isHome || href === "#accueil") {
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          scrollToTop();
+        }, 100);
+      } else {
+        scrollToTop();
+      }
+      return;
+    }
+    
+    // Pour les autres ancres (Produits, Stations, Tarifs)
     if (location.pathname !== "/") {
       navigate("/");
-      // Attendre que la page soit chargée et le DOM mis à jour
       setTimeout(() => {
         const element = document.querySelector(href);
         if (element) {
-          const offset = 100; // Hauteur du header agrandi
+          const offset = 100;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
           
@@ -50,7 +67,6 @@ const Header = () => {
         }
       }, 100);
     } else {
-      // Déjà sur l'accueil, scroller directement
       const element = document.querySelector(href);
       if (element) {
         const offset = 100;
@@ -71,8 +87,11 @@ const Header = () => {
     
     if (location.pathname !== "/") {
       navigate("/");
+      setTimeout(() => {
+        scrollToTop();
+      }, 100);
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      scrollToTop();
     }
   };
 
@@ -266,6 +285,12 @@ const Header = () => {
 
         .ne-link:active {
           transform: translateY(0);
+        }
+
+        /* Style spécial pour le lien Accueil */
+        .ne-link.active {
+          background: rgba(255, 255, 255, 0.2);
+          color: var(--text-white);
         }
 
         /* Bouton contact agrandi */
@@ -656,7 +681,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={(e) => handleAnchorClick(e, item.href)}
+                  onClick={(e) => handleAnchorClick(e, item.href, item.isHome)}
                   className="ne-link"
                   aria-label={`Aller à ${item.name}`}
                 >
@@ -700,7 +725,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={(e) => handleAnchorClick(e, item.href)}
+                  onClick={(e) => handleAnchorClick(e, item.href, item.isHome)}
                   className="ne-mobile-link"
                   aria-label={`Aller à ${item.name}`}
                 >
@@ -723,4 +748,4 @@ const Header = () => {
   );
 };
 
-export default Header;    
+export default Header;

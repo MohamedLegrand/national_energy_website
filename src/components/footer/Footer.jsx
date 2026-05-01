@@ -1,5 +1,6 @@
 // src/components/footer/Footer.jsx
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,6 +11,11 @@ const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // Effet pour remonter en haut quand la route change
+  useEffect(() => {
+    scrollToTop();
+  }, [location.pathname]);
 
   // Fonction pour gérer le défilement vers les ancres
   const handleAnchorClick = (e, href) => {
@@ -44,6 +50,19 @@ const Footer = () => {
     }
   };
 
+  // Gestion du clic sur les liens de navigation (Contact, A propos)
+  const handleNavLinkClick = (e, path) => {
+    e.preventDefault();
+    if (location.pathname !== path) {
+      navigate(path);
+      setTimeout(() => {
+        scrollToTop();
+      }, 100);
+    } else {
+      scrollToTop();
+    }
+  };
+
   const contactInfo = {
     adresse: "Odza, montée collège Adventiste, Yaoundé, Cameroun",
     telephone: ["+237 673 787 926", "+237 694 457 230"],
@@ -51,18 +70,19 @@ const Footer = () => {
   };
 
   const navLinks = [
-    { label: "Accueil", href: "#accueil", anchor: true },
-    { label: "Produits", href: "#produits", anchor: true },
-    { label: "Nos stations", href: "#stations", anchor: true },
-    { label: "Tarifs journaliers", href: "#tarifs", anchor: true },
-    { label: "Contact", href: "/contact", anchor: false },
+    { label: "Accueil", href: "#accueil", anchor: true, path: "/" },
+    { label: "Produits", href: "#produits", anchor: true, path: "/" },
+    { label: "Nos stations", href: "#stations", anchor: true, path: "/" },
+    { label: "Tarifs journaliers", href: "#tarifs", anchor: true, path: "/" },
+    { label: "Contact", href: "/contact", anchor: false, path: "/contact" },
+    { label: "A propos", href: "/apropos", anchor: false, path: "/apropos" },
   ];
 
   const serviceLinks = [
-    { label: "Demande de devis", href: "/contact", anchor: false },
-    { label: "Trouver une station", href: "#stations", anchor: true },
-    { label: "Prix journaliers", href: "#tarifs", anchor: true },
-    { label: "Partenariats", href: "/contact", anchor: false },
+    { label: "Demande de devis", href: "/contact", anchor: false, path: "/contact" },
+    { label: "Trouver une station", href: "#stations", anchor: true, path: "/" },
+    { label: "Prix journaliers", href: "#tarifs", anchor: true, path: "/" },
+    { label: "Partenariats", href: "/contact", anchor: false, path: "/contact" },
   ];
 
   // Réseaux sociaux avec images
@@ -207,6 +227,7 @@ const Footer = () => {
           transition: background 0.2s, border-color 0.2s, color 0.2s;
           white-space: nowrap;
           flex-shrink: 0;
+          cursor: pointer;
         }
 
         .ft-cta:hover {
@@ -519,18 +540,19 @@ const Footer = () => {
               Leader dans la distribution de produits pétroliers au Cameroun, au service des particuliers et des professionnels depuis des années.
             </p>
 
-            <Link to="/contact" className="ft-cta">
+            <button onClick={(e) => handleNavLinkClick(e, "/contact")} className="ft-cta">
               Nous contacter
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </Link>
-              <Link to="/apropos" className="ft-cta">
+            </button>
+            
+            <button onClick={(e) => handleNavLinkClick(e, "/apropos")} className="ft-cta">
               A propos
               <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </Link>
+            </button>
           </div>
 
           {/* ===== COLONNES ===== */}
@@ -583,7 +605,9 @@ const Footer = () => {
                     </li>
                   ) : (
                     <li key={l.label}>
-                      <Link to={l.href} className="ft-link-a">{l.label}</Link>
+                      <button className="ft-link-btn" onClick={(e) => handleNavLinkClick(e, l.path)}>
+                        {l.label}
+                      </button>
                     </li>
                   )
                 )}
@@ -603,7 +627,9 @@ const Footer = () => {
                     </li>
                   ) : (
                     <li key={l.label}>
-                      <Link to={l.href} className="ft-link-a">{l.label}</Link>
+                      <button className="ft-link-btn" onClick={(e) => handleNavLinkClick(e, l.path)}>
+                        {l.label}
+                      </button>
                     </li>
                   )
                 )}
