@@ -14,6 +14,8 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const WHATSAPP_NUMBER = "237699122963";
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (errorMessage) setErrorMessage("");
@@ -23,14 +25,42 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setErrorMessage("");
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      console.log("Formulaire soumis:", formData);
+      // Petite pause pour simuler le traitement
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      // Construction du message WhatsApp
+      const sujetLabels = {
+        devis: "Demande de devis",
+        partenariat: "Partenariat",
+        reclamation: "Réclamation",
+        information: "Demande d'information",
+        autre: "Autre",
+      };
+
+      const sujetLabel = sujetLabels[formData.sujet] || formData.sujet || "Non précisé";
+
+      const waMessage =
+        `Bonjour National Energy 👋\n\n` +
+        `*Nom :* ${formData.nom}\n` +
+        `*Email :* ${formData.email || "Non renseigné"}\n` +
+        `*Téléphone :* ${formData.telephone || "Non renseigné"}\n` +
+        `*Sujet :* ${sujetLabel}\n\n` +
+        `*Message :*\n${formData.message}`;
+
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+
+      // Marquer comme soumis, puis ouvrir WhatsApp
       setIsSubmitted(true);
       setFormData({ nom: "", email: "", telephone: "", sujet: "", message: "" });
-      setTimeout(() => setIsSubmitted(false), 6000);
+
+      // Ouvre WhatsApp dans un nouvel onglet
+      window.open(waUrl, "_blank", "noopener,noreferrer");
+
+      setTimeout(() => setIsSubmitted(false), 8000);
     } catch {
-      setErrorMessage("Une erreur s'est produite. Veuillez réessayer plus tard.");
+      setErrorMessage("Une erreur s'est produite. Veuillez réessayer ou nous contacter directement sur WhatsApp.");
     } finally {
       setIsSubmitting(false);
     }
@@ -47,27 +77,17 @@ const Contact = () => {
 
   const contactInfo = {
     adresse: "Odza, montée collège Adventiste, Yaoundé, Cameroun",
-    telephone: ["+237 673 787 926", "+237 694 457 230"],
+    telephone: ["+237 699 122 963", "+237 659 285 166"],
     email: ["contact@national-energy.cm", "commercial@national-energy.cm"],
     horaires: {
       lundiVendredi: "8h - 18h",
       samedi: "9h - 13h",
       dimanche: "Fermé",
     },
-    reseauxSociaux: {
-      facebook: "https://facebook.com/nationalenergy",
-      linkedin: "https://linkedin.com/company/national-energy",
-      youtube: "https://youtube.com/c/nationalenergy",
-    },
   };
 
-  // Coordonnées précises de la station National Energy à Odza
   const stationCoords = { lat: 3.8480, lng: 11.5021 };
-  
-  // URL Google Maps avec marqueur personnalisé pointant vers la station
-  const mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyB_1Dq9M-T1xkJqS7xo0JwR0RrL9w2KxcQ&q=National+Energy+Odza+Yaoundé+Cameroun&center=${stationCoords.lat},${stationCoords.lng}&zoom=17&maptype=roadmap`;
-  
-  // Fallback URL sans API key
+
   const mapFallbackUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15907.82927362098!2d${stationCoords.lng - 0.01}!3d${stationCoords.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x108bcf9e7f4f8f8f%3A0x8b3c5c8f5b5c5c5c!2sOdza%2C%20Yaound%C3%A9%2C%20Cameroun!5e0!3m2!1sfr!2scm!4v1700000000000!5m2!1sfr!2scm`;
 
   return (
@@ -81,7 +101,6 @@ const Contact = () => {
           min-height: 100vh;
         }
 
-        /* ===== HERO ===== */
         .cp-hero {
           position: relative;
           height: 480px;
@@ -112,10 +131,8 @@ const Contact = () => {
 
         .cp-hero-accent {
           position: absolute;
-          top: 0;
-          right: 0;
-          width: 320px;
-          height: 100%;
+          top: 0; right: 0;
+          width: 320px; height: 100%;
           background: rgba(52, 211, 153, 0.08);
           clip-path: polygon(40% 0, 100% 0, 100% 100%, 10% 100%);
           pointer-events: none;
@@ -142,10 +159,10 @@ const Contact = () => {
         }
 
         .cp-hero-eyebrow-dot {
-          width: 7px;
-          height: 7px;
+          width: 7px; height: 7px;
           background: #34D399;
           border-radius: 50%;
+          flex-shrink: 0;
         }
 
         .cp-hero-eyebrow-text {
@@ -159,7 +176,7 @@ const Contact = () => {
 
         .cp-hero-title {
           font-family: 'Outfit', sans-serif;
-          font-size: clamp(2rem, 5vw, 3.2rem);
+          font-size: clamp(1.8rem, 5vw, 3.2rem);
           font-weight: 800;
           color: #fff;
           line-height: 1.1;
@@ -167,21 +184,18 @@ const Contact = () => {
           margin-bottom: 14px;
         }
 
-        .cp-hero-title span {
-          color: #34D399;
-        }
+        .cp-hero-title span { color: #34D399; }
 
         .cp-hero-sub {
           font-size: 15px;
-          color: rgba(255, 255, 255, 0.65);
+          color: rgba(255,255,255,0.65);
           max-width: 520px;
           line-height: 1.65;
         }
 
         .cp-breadcrumb {
           position: absolute;
-          top: 24px;
-          left: 50%;
+          top: 24px; left: 50%;
           transform: translateX(-50%);
           z-index: 2;
           width: 100%;
@@ -191,27 +205,14 @@ const Contact = () => {
           align-items: center;
           gap: 8px;
           font-size: 12px;
-          color: rgba(255, 255, 255, 0.5);
+          color: rgba(255,255,255,0.5);
           font-family: 'Outfit', sans-serif;
         }
 
-        .cp-breadcrumb a {
-          color: rgba(255, 255, 255, 0.5);
-          text-decoration: none;
-          transition: color 0.15s;
-        }
-
-        .cp-breadcrumb a:hover {
-          color: #34D399;
-        }
-
-        .cp-breadcrumb-sep {
-          opacity: 0.4;
-        }
-
-        .cp-breadcrumb-current {
-          color: rgba(255, 255, 255, 0.85);
-        }
+        .cp-breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+        .cp-breadcrumb a:hover { color: #34D399; }
+        .cp-breadcrumb-sep { opacity: 0.4; }
+        .cp-breadcrumb-current { color: rgba(255,255,255,0.85); }
 
         .cp-body {
           max-width: 1280px;
@@ -238,11 +239,11 @@ const Contact = () => {
           gap: 14px;
           box-shadow: 0 4px 24px rgba(13, 48, 38, 0.12);
           border: 1px solid rgba(52, 211, 153, 0.1);
+          min-width: 0;
         }
 
         .cp-stat-icon {
-          width: 44px;
-          height: 44px;
+          width: 44px; height: 44px;
           background: #ECFDF5;
           border-radius: 10px;
           display: flex;
@@ -251,11 +252,7 @@ const Contact = () => {
           flex-shrink: 0;
         }
 
-        .cp-stat-icon svg {
-          width: 20px;
-          height: 20px;
-          stroke: #059669;
-        }
+        .cp-stat-icon svg { width: 20px; height: 20px; stroke: #059669; }
 
         .cp-stat-label {
           font-size: 11px;
@@ -267,11 +264,12 @@ const Contact = () => {
         }
 
         .cp-stat-value {
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 600;
           color: #111827;
           line-height: 1.3;
           font-family: 'Outfit', sans-serif;
+          word-break: break-word;
         }
 
         .cp-grid {
@@ -313,8 +311,7 @@ const Contact = () => {
         .cp-info-card-title::before {
           content: '';
           display: block;
-          width: 3px;
-          height: 16px;
+          width: 3px; height: 16px;
           background: #34D399;
           border-radius: 2px;
         }
@@ -327,14 +324,10 @@ const Contact = () => {
           border-bottom: 1px solid #F9FAFB;
         }
 
-        .cp-info-item:last-child {
-          border-bottom: none;
-          padding-bottom: 0;
-        }
+        .cp-info-item:last-child { border-bottom: none; padding-bottom: 0; }
 
         .cp-info-icon {
-          width: 36px;
-          height: 36px;
+          width: 36px; height: 36px;
           background: #F0FDF4;
           border-radius: 9px;
           display: flex;
@@ -344,11 +337,7 @@ const Contact = () => {
           margin-top: 1px;
         }
 
-        .cp-info-icon svg {
-          width: 16px;
-          height: 16px;
-          stroke: #059669;
-        }
+        .cp-info-icon svg { width: 16px; height: 16px; stroke: #059669; }
 
         .cp-info-label {
           font-size: 11px;
@@ -360,11 +349,7 @@ const Contact = () => {
           font-family: 'Outfit', sans-serif;
         }
 
-        .cp-info-text {
-          font-size: 13.5px;
-          color: #374151;
-          line-height: 1.55;
-        }
+        .cp-info-text { font-size: 13.5px; color: #374151; line-height: 1.55; }
 
         .cp-info-link {
           font-size: 13.5px;
@@ -375,9 +360,7 @@ const Contact = () => {
           line-height: 1.6;
         }
 
-        .cp-info-link:hover {
-          color: #34D399;
-        }
+        .cp-info-link:hover { color: #34D399; }
 
         .cp-hours-badge {
           display: flex;
@@ -389,33 +372,71 @@ const Contact = () => {
           font-size: 13px;
         }
 
-        .cp-hours-badge:last-child {
-          margin-bottom: 0;
+        .cp-hours-badge:last-child { margin-bottom: 0; }
+        .cp-hours-badge.open { background: #F0FDF4; }
+        .cp-hours-badge.closed { background: #FEF2F2; }
+        .cp-hours-day { color: #374151; font-weight: 500; }
+        .cp-hours-time.open-time { color: #059669; font-weight: 600; }
+        .cp-hours-time.closed-time { color: #DC2626; font-weight: 600; }
+
+        /* WhatsApp sidebar */
+        .cp-wa-card {
+          background: #fff;
+          border-radius: 16px;
+          padding: 1.25rem 1.5rem;
+          box-shadow: 0 2px 16px rgba(13, 48, 38, 0.07);
+          border: 1px solid rgba(52, 211, 153, 0.08);
         }
 
-        .cp-hours-badge.open {
-          background: #F0FDF4;
+        .cp-wa-title {
+          font-family: 'Outfit', sans-serif;
+          font-size: 14px;
+          font-weight: 700;
+          color: #0D3026;
+          margin-bottom: 14px;
+          padding-bottom: 12px;
+          border-bottom: 1.5px solid #F0FDF4;
+          display: flex;
+          align-items: center;
+          gap: 8px;
         }
 
-        .cp-hours-badge.closed {
-          background: #FEF2F2;
+        .cp-wa-title::before {
+          content: '';
+          display: block;
+          width: 3px; height: 14px;
+          background: #25D366;
+          border-radius: 2px;
         }
 
-        .cp-hours-day {
-          color: #374151;
-          font-weight: 500;
+        .cp-wa-btn {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 12px 16px;
+          border-radius: 12px;
+          background: rgba(37, 211, 102, 0.08);
+          border: 1.5px solid rgba(37, 211, 102, 0.25);
+          color: #1a7a42;
+          text-decoration: none;
+          transition: all 0.2s;
+          width: 100%;
         }
 
-        .cp-hours-time.open-time {
-          color: #059669;
-          font-weight: 600;
+        .cp-wa-btn:hover {
+          background: #25D366;
+          border-color: #25D366;
+          color: #fff;
+          transform: translateX(3px);
         }
 
-        .cp-hours-time.closed-time {
-          color: #DC2626;
-          font-weight: 600;
-        }
+        .cp-wa-btn svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
 
+        .cp-wa-btn-text { flex: 1; }
+        .cp-wa-btn-label { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; }
+        .cp-wa-btn-sub { font-size: 11px; opacity: 0.7; margin-top: 1px; }
+
+        /* Formulaire */
         .cp-form-card {
           background: #fff;
           border-radius: 20px;
@@ -439,11 +460,24 @@ const Contact = () => {
           margin-bottom: 6px;
         }
 
-        .cp-form-desc {
-          font-size: 14px;
-          color: #6B7280;
-          line-height: 1.6;
+        .cp-form-desc { font-size: 14px; color: #6B7280; line-height: 1.6; }
+
+        /* Badge WhatsApp dans le header formulaire */
+        .cp-form-wa-hint {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          margin-top: 10px;
+          background: rgba(37, 211, 102, 0.08);
+          border: 1px solid rgba(37, 211, 102, 0.2);
+          border-radius: 8px;
+          padding: 6px 12px;
+          font-size: 12px;
+          color: #1a7a42;
+          font-weight: 500;
         }
+
+        .cp-form-wa-hint svg { width: 14px; height: 14px; fill: #25D366; flex-shrink: 0; }
 
         .cp-form-grid {
           display: grid;
@@ -452,15 +486,8 @@ const Contact = () => {
           margin-bottom: 18px;
         }
 
-        .cp-field {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .cp-field.full {
-          grid-column: 1 / -1;
-        }
+        .cp-field { display: flex; flex-direction: column; gap: 6px; }
+        .cp-field.full { grid-column: 1 / -1; }
 
         .cp-label {
           font-size: 13px;
@@ -472,11 +499,7 @@ const Contact = () => {
           gap: 4px;
         }
 
-        .cp-label-req {
-          color: #34D399;
-          font-size: 15px;
-          line-height: 1;
-        }
+        .cp-label-req { color: #34D399; font-size: 15px; line-height: 1; }
 
         .cp-input,
         .cp-select,
@@ -491,12 +514,11 @@ const Contact = () => {
           font-family: 'DM Sans', sans-serif;
           transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
           outline: none;
+          box-sizing: border-box;
         }
 
         .cp-input::placeholder,
-        .cp-textarea::placeholder {
-          color: #C4C8CD;
-        }
+        .cp-textarea::placeholder { color: #C4C8CD; }
 
         .cp-input:focus,
         .cp-select:focus,
@@ -512,24 +534,21 @@ const Contact = () => {
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: right 12px center;
+          background-color: #FAFAFA;
           padding-right: 36px;
         }
 
-        .cp-textarea {
-          resize: none;
-          height: 150px;
-          line-height: 1.65;
-        }
+        .cp-textarea { resize: none; height: 150px; line-height: 1.65; }
 
         .cp-submit {
           width: 100%;
           padding: 14px;
           border: none;
           border-radius: 11px;
-          background: #0D3026;
+          background: #25D366;
           color: #fff;
           font-size: 15px;
-          font-weight: 600;
+          font-weight: 700;
           font-family: 'Outfit', sans-serif;
           cursor: pointer;
           transition: background 0.2s, transform 0.1s;
@@ -542,23 +561,13 @@ const Contact = () => {
         }
 
         .cp-submit:hover:not(:disabled) {
-          background: #34D399;
-          color: #0D3026;
+          background: #1da851;
         }
 
-        .cp-submit:active:not(:disabled) {
-          transform: scale(0.99);
-        }
+        .cp-submit:active:not(:disabled) { transform: scale(0.99); }
+        .cp-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        .cp-submit:disabled {
-          opacity: 0.6;
-          cursor: not-allowed;
-        }
-
-        .cp-submit svg {
-          width: 18px;
-          height: 18px;
-        }
+        .cp-submit svg { width: 20px; height: 20px; flex-shrink: 0; }
 
         .cp-alert {
           border-radius: 10px;
@@ -571,41 +580,21 @@ const Contact = () => {
           margin-bottom: 20px;
         }
 
-        .cp-alert.success {
-          background: #F0FDF4;
-          border: 1px solid #BBF7D0;
-          color: #065F46;
-        }
+        .cp-alert.success { background: #F0FDF4; border: 1px solid #BBF7D0; color: #065F46; }
+        .cp-alert.error   { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; }
+        .cp-alert svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
 
-        .cp-alert.error {
-          background: #FEF2F2;
-          border: 1px solid #FECACA;
-          color: #991B1B;
-        }
+        .cp-note { font-size: 12px; color: #9CA3AF; text-align: center; margin-top: 14px; }
 
-        .cp-alert svg {
-          width: 18px;
-          height: 18px;
-          flex-shrink: 0;
-          margin-top: 1px;
-        }
-
-        .cp-note {
-          font-size: 12px;
-          color: #9CA3AF;
-          text-align: center;
-          margin-top: 14px;
-        }
-
-        .cp-map-section {
-          margin-top: 40px;
-        }
+        /* Carte */
+        .cp-map-section { margin-top: 40px; }
 
         .cp-map-header {
           display: flex;
           align-items: center;
           gap: 10px;
           margin-bottom: 16px;
+          flex-wrap: wrap;
         }
 
         .cp-map-title {
@@ -638,69 +627,7 @@ const Contact = () => {
           position: relative;
         }
 
-        .cp-map-frame {
-          width: 100%;
-          height: 380px;
-          display: block;
-          border: none;
-        }
-
-        /* Pin personnalisé sur la carte via CSS */
-        .cp-map-pin-overlay {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 10;
-          pointer-events: none;
-        }
-
-        .cp-map-pin {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          animation: cp-pin-bounce 2s ease-in-out infinite;
-        }
-
-        .cp-pin-label {
-          background: #0D3026;
-          color: white;
-          font-size: 10px;
-          font-weight: 700;
-          padding: 4px 10px;
-          border-radius: 20px;
-          white-space: nowrap;
-          margin-bottom: 6px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-          font-family: 'Outfit', sans-serif;
-          letter-spacing: 0.05em;
-        }
-
-        .cp-pin-icon {
-          width: 0;
-          height: 0;
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-top: 16px solid #E65100;
-          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
-
-        .cp-pin-dot {
-          position: absolute;
-          top: -8px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 8px;
-          height: 8px;
-          background: #fff;
-          border-radius: 50%;
-          z-index: 2;
-        }
-
-        @keyframes cp-pin-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
+        .cp-map-frame { width: 100%; height: 380px; display: block; border: none; }
 
         .cp-map-footer {
           padding: 14px 20px;
@@ -719,14 +646,11 @@ const Contact = () => {
           display: flex;
           align-items: center;
           gap: 8px;
+          min-width: 0;
         }
 
-        .cp-map-address svg {
-          width: 14px;
-          height: 14px;
-          stroke: #059669;
-          flex-shrink: 0;
-        }
+        .cp-map-address svg { width: 14px; height: 14px; stroke: #059669; flex-shrink: 0; }
+        .cp-map-address span { word-break: break-word; }
 
         .cp-map-directions {
           font-size: 12px;
@@ -744,70 +668,36 @@ const Contact = () => {
           white-space: nowrap;
         }
 
-        .cp-map-directions:hover {
-          background: #0D3026;
-          color: #fff;
-          border-color: #0D3026;
-        }
+        .cp-map-directions:hover { background: #0D3026; color: #fff; border-color: #0D3026; }
+        .cp-map-directions svg { width: 13px; height: 13px; }
 
-        .cp-map-directions svg {
-          width: 13px;
-          height: 13px;
-        }
-
-        .cp-station-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          background: #F0FDF4;
-          border-radius: 8px;
-          padding: 4px 10px;
-          font-size: 11px;
-          color: #059669;
-          font-weight: 600;
-        }
-
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-          .cp-grid {
-            grid-template-columns: 1fr;
-          }
-          .cp-sidebar {
-            position: static;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-          }
-          .cp-cards-row {
-            margin-top: -40px;
-          }
+          .cp-grid { grid-template-columns: 1fr; }
+          .cp-sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; }
+          .cp-cards-row { margin-top: -40px; }
         }
 
         @media (max-width: 768px) {
-          .cp-hero { height: 400px; }
+          .cp-hero { height: 380px; }
           .cp-hero-content { padding: 0 1.25rem 2.5rem; }
-          .cp-cards-row {
-            grid-template-columns: 1fr;
-            margin-top: 24px;
-          }
-          .cp-body { padding: 0 1.25rem 3rem; }
-          .cp-form-card { padding: 1.5rem; }
+          .cp-breadcrumb { padding: 0 1.25rem; }
+          .cp-body { padding: 0 1rem 3rem; }
+          .cp-cards-row { grid-template-columns: 1fr; margin-top: 20px; }
+          .cp-form-card { padding: 1.25rem; }
           .cp-form-grid { grid-template-columns: 1fr; }
           .cp-sidebar { grid-template-columns: 1fr; }
-          .cp-breadcrumb { padding: 0 1.25rem; }
-          .cp-map-frame { height: 280px; }
+          .cp-map-frame { height: 260px; }
           .cp-map-footer { flex-direction: column; align-items: flex-start; }
         }
 
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-        .cp-spin {
-          animation: spin 0.8s linear infinite;
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .cp-spin { animation: spin 0.8s linear infinite; }
       `}</style>
 
       <div className="cp-page">
 
-        {/* ===== HERO SECTION ===== */}
+        {/* HERO */}
         <section className="cp-hero">
           <img
             src="/images/contact.jpg"
@@ -841,7 +731,7 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* ===== BODY ===== */}
+        {/* BODY */}
         <div className="cp-body">
 
           {/* Cartes flottantes */}
@@ -854,7 +744,7 @@ const Contact = () => {
               </div>
               <div>
                 <div className="cp-stat-label">Téléphone</div>
-                <div className="cp-stat-value">+237 673 787 926</div>
+                <div className="cp-stat-value">+237 699 122 963</div>
               </div>
             </div>
             <div className="cp-stat-card">
@@ -884,7 +774,7 @@ const Contact = () => {
           {/* Grille principale */}
           <div className="cp-grid">
 
-            {/* ===== SIDEBAR ===== */}
+            {/* SIDEBAR */}
             <aside className="cp-sidebar">
 
               <div className="cp-info-card">
@@ -912,9 +802,7 @@ const Contact = () => {
                   <div>
                     <div className="cp-info-label">Téléphone</div>
                     {contactInfo.telephone.map((tel) => (
-                      <a key={tel} href={`tel:${tel.replace(/\s/g, "")}`} className="cp-info-link">
-                        {tel}
-                      </a>
+                      <a key={tel} href={`tel:${tel.replace(/\s/g, "")}`} className="cp-info-link">{tel}</a>
                     ))}
                   </div>
                 </div>
@@ -928,9 +816,7 @@ const Contact = () => {
                   <div>
                     <div className="cp-info-label">Email</div>
                     {contactInfo.email.map((mail) => (
-                      <a key={mail} href={`mailto:${mail}`} className="cp-info-link">
-                        {mail}
-                      </a>
+                      <a key={mail} href={`mailto:${mail}`} className="cp-info-link">{mail}</a>
                     ))}
                   </div>
                 </div>
@@ -961,60 +847,30 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-md p-5">
-                <div className="font-bold text-base text-primary border-b-2 border-secondary pb-2 mb-4 inline-block">
-                  Suivez-nous
-                </div>
-                <div className="flex flex-col gap-3">
-                  <a 
-                    href="https://facebook.com/nationalenergy" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#1877f2] hover:text-white transition-all duration-200 hover:translate-x-1"
-                  >
-                    <img 
-                      src="/images/reseaux/facebook.jpg" 
-                      alt="Facebook"
-                      className="w-7 h-7 rounded-lg object-cover"
-                    />
-                    <span className="flex-1 text-sm font-medium">Facebook</span>
-                    <span className="text-gray-400">→</span>
-                  </a>
-                  <a 
-                    href="https://linkedin.com/company/national-energy" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#0077b5] hover:text-white transition-all duration-200 hover:translate-x-1"
-                  >
-                    <img 
-                      src="/images/reseaux/linkedin.jpg" 
-                      alt="LinkedIn"
-                      className="w-7 h-7 rounded-lg object-cover"
-                    />
-                    <span className="flex-1 text-sm font-medium">LinkedIn</span>
-                    <span className="text-gray-400">→</span>
-                  </a>
-                  <a 
-                    href="https://wa.me/237673787926" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#25D366] hover:text-white transition-all duration-200 hover:translate-x-1"
-                  >
-                    <img 
-                      src="/images/reseaux/whatsapp.jpg" 
-                      alt="WhatsApp"
-                      className="w-7 h-7 rounded-lg object-cover"
-                    />
-                    <span className="flex-1 text-sm font-medium">WhatsApp</span>
-                    <span className="text-gray-400">→</span>
-                  </a>
-                </div>
+              {/* WhatsApp direct */}
+              <div className="cp-wa-card">
+                <div className="cp-wa-title">Nous joindre</div>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cp-wa-btn"
+                >
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  <div className="cp-wa-btn-text">
+                    <div className="cp-wa-btn-label">WhatsApp</div>
+                    <div className="cp-wa-btn-sub">+237 699 122 963</div>
+                  </div>
+                  <span>→</span>
+                </a>
               </div>
 
               {/* Badge station */}
               <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-4 border border-primary/20">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                     <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -1022,19 +878,25 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-bold text-primary text-sm">Notre station</p>
-                    <p className="text-xs text-gray-500">Ouverte 24h/24 - 7j/7</p>
+                    <p className="text-xs text-gray-500">Ouverte 24h/24 — 7j/7</p>
                   </div>
                 </div>
               </div>
             </aside>
 
-            {/* ===== FORMULAIRE ===== */}
+            {/* FORMULAIRE */}
             <div>
               <div className="cp-form-card">
                 <div className="cp-form-header">
                   <div className="cp-form-title">Envoyez-nous un message</div>
                   <div className="cp-form-desc">
-                    Remplissez le formulaire ci-dessous et nous vous répondrons sous 24h ouvrées.
+                    Remplissez le formulaire ci-dessous — vous serez redirigé vers WhatsApp avec votre message pré-rempli.
+                  </div>
+                  <div className="cp-form-wa-hint">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Votre message sera envoyé via WhatsApp
                   </div>
                 </div>
 
@@ -1043,7 +905,7 @@ const Contact = () => {
                     <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.</span>
+                    <span>WhatsApp a été ouvert avec votre message pré-rempli. Appuyez sur "Envoyer" dans WhatsApp pour finaliser.</span>
                   </div>
                 )}
 
@@ -1076,7 +938,7 @@ const Contact = () => {
 
                     <div className="cp-field">
                       <label htmlFor="email" className="cp-label">
-                        Adresse email <span className="cp-label-req" aria-hidden="true">*</span>
+                        Adresse email
                       </label>
                       <input
                         type="email"
@@ -1084,7 +946,6 @@ const Contact = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        required
                         placeholder="vous@example.com"
                         className="cp-input"
                       />
@@ -1143,66 +1004,51 @@ const Contact = () => {
                         <svg className="cp-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
-                        Envoi en cours...
+                        Préparation du message...
                       </>
                     ) : (
                       <>
-                        Envoyer le message
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
+                        {/* Icône WhatsApp */}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: 20, height: 20, fill: "white", flexShrink: 0 }}>
+                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
+                        Envoyer via WhatsApp
                       </>
                     )}
                   </button>
 
                   <p className="cp-note">
-                    * Champs obligatoires — Vos données sont traitées avec confidentialité.
+                    * Champs obligatoires — Vous serez redirigé vers WhatsApp pour envoyer votre message.
                   </p>
                 </form>
               </div>
             </div>
           </div>
 
-          {/* ===== CARTE GOOGLE MAPS AVEC POINTEUR STATION ===== */}
+          {/* CARTE */}
           <div className="cp-map-section">
             <div className="cp-map-header">
-              <div className="cp-map-title">📍 Notre station à Odza</div>
+              <div className="cp-map-title">Notre station à Odza</div>
               <div className="cp-map-pill">Yaoundé · Cameroun</div>
-              <div className="cp-station-badge">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                Station ouverte 24h/24
-              </div>
             </div>
             <div className="cp-map-card">
-              <div style={{ position: "relative" }}>
-                <iframe
-                  src={mapFallbackUrl}
-                  className="cp-map-frame"
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Carte National Energy Yaoundé Odza - Station"
-                />
-                {/* Pin personnalisé superposé */}
-                <div className="cp-map-pin-overlay">
-                  <div className="cp-map-pin">
-                    <div className="cp-pin-label">NATIONAL ENERGY</div>
-                    <div className="cp-pin-icon"></div>
-                    <div className="cp-pin-dot"></div>
-                  </div>
-                </div>
-              </div>
+              <iframe
+                src={mapFallbackUrl}
+                className="cp-map-frame"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Carte National Energy Yaoundé Odza"
+              />
               <div className="cp-map-footer">
                 <div className="cp-map-address">
                   <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span>
-                    <strong>Station National Energy</strong> — Montée Collège Adventiste, Odza, Yaoundé
-                  </span>
+                  <span><strong>Station National Energy</strong> — Montée Collège Adventiste, Odza, Yaoundé</span>
                 </div>
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
                   <a
                     href={`https://www.google.com/maps/dir/?api=1&destination=${stationCoords.lat},${stationCoords.lng}`}
                     target="_blank"
