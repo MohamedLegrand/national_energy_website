@@ -65,7 +65,7 @@ const Footer = () => {
 
   const contactInfo = {
     adresse: "Odza, montée collège Adventiste, Yaoundé, Cameroun",
-    telephone: ["+237 673 787 926", "+237 694 457 230"],
+    telephone: ["+237 699 122 963", "+237 659 285 166"],
     email: ["contact@national-energy.cm", "commercial@national-energy.cm"],
   };
 
@@ -89,19 +89,19 @@ const Footer = () => {
   const socialLinks = [
     {
       label: "Facebook",
-      href: "https://facebook.com/nationalenergy",
+      href: "#",
       imgSrc: "/images/reseaux/facebook.jpg",
       imgAlt: "Facebook National Energy"
     },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/company/national-energy",
+      href: "#",
       imgSrc: "/images/reseaux/linkedin.jpg",
       imgAlt: "LinkedIn National Energy"
     },
     {
       label: "WhatsApp",
-      href: "https://wa.me/237673787926",
+      href: "https://wa.me/237699122963",
       imgSrc: "/images/reseaux/whatsapp.jpg",
       imgAlt: "WhatsApp National Energy"
     },
