@@ -1,6 +1,6 @@
-// src/pages/mentions/Politiques.jsx
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Politiques = () => {
   // Scroll to top on mount
@@ -15,7 +15,7 @@ const Politiques = () => {
       content: (
         <>
           <p className="font-dm text-gray-600 leading-relaxed mb-4">
-            La protection de vos données personnelles est une priorité pour <strong className="text-primary-dark">National Energy</strong>. La présente politique de confidentialité a pour objet de vous informer de manière claire et transparente sur la manière dont nous collectons, utilisons, protégeons et partageons vos données personnelles lors de votre navigation sur notre site <strong>national-energy.cm</strong> et de l'utilisation de nos services.
+            La protection de vos données personnelles est une priorité pour <strong className="text-primary-dark">National Energy</strong>. La présente politique de confidentialité a pour objet de vous informer de manière claire et transparente sur la manière dont nous collectons, utilisons, protégeons et partageons vos données personnelles lors de votre navigation sur notre site <strong>national-energ.com</strong> et de l'utilisation de nos services.
           </p>
           <div className="bg-blue-50 border-l-4 border-blue-500 rounded-r-lg p-4 mb-4">
             <p className="font-dm text-sm text-primary flex items-start gap-2">
@@ -241,7 +241,7 @@ const Politiques = () => {
             </p>
             <p className="text-sm text-gray-700">
               Contactez notre délégué à la protection des données :<br />
-              ✉️ <a href="mailto:dpo@national-energy.cm" className="text-secondary hover:underline">dpo@national-energy.cm</a><br />
+              ✉️ <a href="mailto:dpo@national-energ.com" className="text-secondary hover:underline">dpo@national-energ.com</a><br />
               📍 Odza, montée collège Adventiste, Yaoundé, Cameroun
             </p>
           </div>
@@ -375,13 +375,13 @@ const Politiques = () => {
           
           <div className="grid md:grid-cols-3 gap-4 mb-6">
             <a 
-              href="mailto:dpo@national-energy.cm" 
+              href="mailto:dpo@national-energ.com" 
               className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-secondary transition-colors group"
             >
               <span className="text-2xl group-hover:scale-110 transition-transform">✉️</span>
               <div>
                 <p className="font-semibold text-primary-dark">Délégué à la protection</p>
-                <p className="text-sm text-secondary break-all">dpo@national-energy.cm</p>
+                <p className="text-sm text-secondary break-all">dpo@national-energ.com</p>
               </div>
             </a>
             <a 
@@ -420,182 +420,191 @@ const Politiques = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen font-dm">
-      
-      {/* ========== HERO SECTION ========== */}
-      <section 
-        className="relative bg-gradient-to-br from-[#1B5E20] via-[#2E7D32] to-[#388E3C] text-white py-24 md:py-32 overflow-hidden"
-        aria-labelledby="politiques-title"
-      >
-        {/* Image de fond avec overlay */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-          style={{ 
-            backgroundImage: "url('/images/politiques.png')",
-            filter: "brightness(0.9) contrast(1.1)"
-          }}
-          aria-hidden="true"
-        />
+    <>
+      <Helmet>
+        <title>Politique de confidentialité - National Energy Cameroun</title>
+        <meta name="description" content="Politique de confidentialité de National Energy : collecte des données personnelles, cookies, vos droits et sécurité. Conforme à la loi camerounaise n° 2010/012." />
+        <meta name="keywords" content="politique confidentialité National Energy, protection données Cameroun, cookies, RGPD Cameroun, données personnelles" />
+        <link rel="canonical" href="https://national-energ.com/politiques" />
+        <meta name="robots" content="index, follow" />
         
-        {/* Overlay dégradé pour lisibilité */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1B5E20]/90 via-[#1B5E20]/70 to-transparent" aria-hidden="true" />
+        <meta property="og:title" content="Politique de confidentialité - National Energy Cameroun" />
+        <meta property="og:description" content="Protection de vos données personnelles chez National Energy. Conforme à la loi camerounaise." />
+        <meta property="og:url" content="https://national-energ.com/politiques" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fr_FR" />
         
-        {/* Effets décoratifs */}
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" aria-hidden="true" />
-        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-2xl" aria-hidden="true" />
-        
-        {/* Contenu CENTRÉ */}
-        <div className="relative container-custom z-10 flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh] text-center px-4">
-          
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6">
-            <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-            <span className="font-outfit text-xs font-semibold uppercase tracking-wider">Confidentialité & Protection</span>
-          </div>
-          
-          <h1 
-            id="politiques-title"
-            className="font-outfit text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight max-w-4xl mx-auto"
-          >
-            Politique de confidentialité
-          </h1>
-          
-          <p className="font-dm text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Découvrez comment National Energy protège et utilise vos données personnelles en toute transparence.
-          </p>
-          
-          {/* Fil d'Ariane centré */}
-          <nav className="flex items-center justify-center gap-2 text-sm font-medium flex-wrap" aria-label="Fil d'Ariane">
-            <Link 
-              to="/" 
-              className="flex items-center gap-1 text-white/80 hover:text-white transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              Accueil
-            </Link>
-            <span className="text-white/40">/</span>
-            <span className="text-white">Politique de confidentialité</span>
-          </nav>
-          
-        </div>
-      </section>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Politique de confidentialité - National Energy" />
+        <meta name="twitter:description" content="Protection de vos données personnelles." />
+      </Helmet>
 
-      {/* ========== TABLE DES MATIÈRES (Desktop) ========== */}
-      <div className="hidden lg:block bg-gray-50 border-b border-gray-200 sticky top-0 z-40">
-        <div className="container-custom py-3">
-          <div className="flex items-center gap-6 overflow-x-auto scrollbar-thin">
-            <span className="font-outfit font-semibold text-primary-dark whitespace-nowrap flex-shrink-0">Sommaire :</span>
-            {sections.map((section) => (
-              <a
-                key={section.id}
-                href={`#${section.id}`}
-                className="text-sm text-gray-600 hover:text-secondary transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-secondary pb-1"
+      <div className="bg-white min-h-screen font-dm">
+        
+        {/* ========== HERO SECTION ========== */}
+        <section 
+          className="relative bg-gradient-to-br from-[#1B5E20] via-[#2E7D32] to-[#388E3C] text-white py-24 md:py-32 overflow-hidden"
+          aria-labelledby="politiques-title"
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+            style={{ 
+              backgroundImage: "url('/images/politiques.png')",
+              filter: "brightness(0.9) contrast(1.1)"
+            }}
+            aria-hidden="true"
+          />
+          
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1B5E20]/90 via-[#1B5E20]/70 to-transparent" aria-hidden="true" />
+          
+          <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" aria-hidden="true" />
+          <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-2xl" aria-hidden="true" />
+          
+          <div className="relative container-custom z-10 flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh] text-center px-4">
+            
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6">
+              <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
+              <span className="font-outfit text-xs font-semibold uppercase tracking-wider">Confidentialité & Protection</span>
+            </div>
+            
+            <h1 
+              id="politiques-title"
+              className="font-outfit text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight max-w-4xl mx-auto"
+            >
+              Politique de confidentialité
+            </h1>
+            
+            <p className="font-dm text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Découvrez comment National Energy protège et utilise vos données personnelles en toute transparence.
+            </p>
+            
+            <nav className="flex items-center justify-center gap-2 text-sm font-medium flex-wrap" aria-label="Fil d'Ariane">
+              <Link 
+                to="/" 
+                className="flex items-center gap-1 text-white/80 hover:text-white transition-colors"
               >
-                {section.title}
-              </a>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Accueil
+              </Link>
+              <span className="text-white/40">/</span>
+              <span className="text-white">Politique de confidentialité</span>
+            </nav>
+            
+          </div>
+        </section>
+
+        {/* ========== TABLE DES MATIÈRES (Desktop) ========== */}
+        <div className="hidden lg:block bg-gray-50 border-b border-gray-200 sticky top-0 z-40">
+          <div className="container-custom py-3">
+            <div className="flex items-center gap-6 overflow-x-auto scrollbar-thin">
+              <span className="font-outfit font-semibold text-primary-dark whitespace-nowrap flex-shrink-0">Sommaire :</span>
+              {sections.map((section) => (
+                <a
+                  key={section.id}
+                  href={`#${section.id}`}
+                  className="text-sm text-gray-600 hover:text-secondary transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-secondary pb-1"
+                >
+                  {section.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ========== CONTENU PRINCIPAL ========== */}
+        <main className="container-custom py-12 md:py-16">
+          <div className="max-w-4xl mx-auto">
+            
+            {sections.map((section, index) => (
+              <article 
+                key={section.id}
+                id={section.id}
+                className={`scroll-mt-24 mb-12 pb-8 ${index < sections.length - 1 ? 'border-b border-gray-200' : ''}`}
+              >
+                <h2 className="font-outfit text-xl md:text-2xl font-bold text-primary mb-5 flex items-center gap-3 group">
+                  <span className="w-1.5 h-6 bg-gradient-to-b from-secondary to-[#1B5E20] rounded-full group-hover:scale-y-110 transition-transform" />
+                  {section.title}
+                </h2>
+                <div className="pl-4">
+                  {section.content}
+                </div>
+              </article>
             ))}
-          </div>
-        </div>
-      </div>
 
-      {/* ========== CONTENU PRINCIPAL ========== */}
-      <main className="container-custom py-12 md:py-16">
-        <div className="max-w-4xl mx-auto">
+            <div className="mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <p className="text-gray-500 text-sm font-dm">
+                Document conforme à la loi camerounaise n° 2010/012 sur la cybersécurité
+              </p>
+              <p className="text-gray-400 text-sm font-dm">
+                Dernière mise à jour : <time dateTime={new Date().toISOString()}>{new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg hover:bg-[#1B5E20] transition-colors font-medium text-sm"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                </svg>
+                Retour en haut
+              </button>
+              <Link
+                to="/mentions"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-100 text-primary-dark rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Voir les mentions légales
+              </Link>
+            </div>
+
+          </div>
+        </main>
+
+        <style>{`
+          html {
+            scroll-behavior: smooth;
+          }
           
-          {sections.map((section, index) => (
-            <article 
-              key={section.id}
-              id={section.id}
-              className={`scroll-mt-24 mb-12 pb-8 ${index < sections.length - 1 ? 'border-b border-gray-200' : ''}`}
-            >
-              <h2 className="font-outfit text-xl md:text-2xl font-bold text-primary mb-5 flex items-center gap-3 group">
-                <span className="w-1.5 h-6 bg-gradient-to-b from-secondary to-[#1B5E20] rounded-full group-hover:scale-y-110 transition-transform" />
-                {section.title}
-              </h2>
-              <div className="pl-4">
-                {section.content}
-              </div>
-            </article>
-          ))}
-
-          {/* Date de mise à jour */}
-          <div className="mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="text-gray-500 text-sm font-dm">
-              Document conforme à la loi camerounaise n° 2010/012 sur la cybersécurité
-            </p>
-            <p className="text-gray-400 text-sm font-dm">
-              Dernière mise à jour : <time dateTime={new Date().toISOString()}>{new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-            </p>
-          </div>
-
-          {/* Boutons d'action */}
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-white rounded-lg hover:bg-[#1B5E20] transition-colors font-medium text-sm"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-              Retour en haut
-            </button>
-            <Link
-              to="/mentions"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-100 text-primary-dark rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Voir les mentions légales
-            </Link>
-          </div>
-
-        </div>
-      </main>
-
-      {/* ========== STYLES SUPPLÉMENTAIRES ========== */}
-      <style>{`
-        /* Smooth scroll pour les ancres */
-        html {
-          scroll-behavior: smooth;
-        }
-        
-        /* Scrollbar personnalisée pour le sommaire */
-        .scrollbar-thin::-webkit-scrollbar {
-          height: 6px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background: #cbd5e1;
-          border-radius: 3px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-          background: #94a3b8;
-        }
-        
-        /* Impression */
-        @media print {
-          .container-custom {
-            padding: 0 !important;
-            max-width: 100% !important;
+          .scrollbar-thin::-webkit-scrollbar {
+            height: 6px;
           }
-          a {
-            text-decoration: none !important;
-            color: inherit !important;
+          .scrollbar-thin::-webkit-scrollbar-track {
+            background: transparent;
           }
-          .hidden-print, .sticky {
-            display: none !important;
+          .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
           }
-          body {
-            font-size: 11pt;
-            line-height: 1.4;
+          .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
           }
-        }
-      `}</style>
-    </div>
+          
+          @media print {
+            .container-custom {
+              padding: 0 !important;
+              max-width: 100% !important;
+            }
+            a {
+              text-decoration: none !important;
+              color: inherit !important;
+            }
+            .hidden-print, .sticky {
+              display: none !important;
+            }
+            body {
+              font-size: 11pt;
+              line-height: 1.4;
+            }
+          }
+        `}</style>
+      </div>
+    </>
   );
 };
 

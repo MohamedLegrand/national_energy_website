@@ -1,6 +1,6 @@
-// src/pages/mentions/Mentions.jsx
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Mentions = () => {
   // Scroll to top on mount
@@ -31,11 +31,11 @@ const Mentions = () => {
               </li>
               <li className="flex flex-wrap gap-2">
                 <span className="font-semibold text-primary-dark min-w-[140px]">Email :</span>
-                <a href="mailto:contact@national-energy.cm" className="text-secondary hover:underline">contact@national-energy.cm</a>
+                <a href="mailto:contact@national-energ.com" className="text-secondary hover:underline">contact@national-energ.com</a>
               </li>
               <li className="flex flex-wrap gap-2">
                 <span className="font-semibold text-primary-dark min-w-[140px]">Directeur général :</span>
-                <span>[Nom du directeur]</span>
+                <span>M. Keedi Jean Joel</span>
               </li>
               <li className="flex flex-wrap gap-2">
                 <span className="font-semibold text-primary-dark min-w-[140px]">Forme juridique :</span>
@@ -165,7 +165,7 @@ const Mentions = () => {
             <ul className="space-y-3 font-dm text-gray-700">
               <li className="flex flex-wrap gap-2">
                 <span className="font-semibold text-primary-dark min-w-[80px]">Email :</span>
-                <a href="mailto:dpo@national-energy.cm" className="text-secondary hover:underline">dpo@national-energy.cm</a>
+                <a href="mailto:dpo@national-energ.com" className="text-secondary hover:underline">dpo@national-energ.com</a>
               </li>
               <li className="flex flex-wrap gap-2">
                 <span className="font-semibold text-primary-dark min-w-[80px]">Adresse :</span>
@@ -230,13 +230,13 @@ const Mentions = () => {
               </div>
             </a>
             <a 
-              href="mailto:contact@national-energy.cm" 
+              href="mailto:contact@national-energ.com" 
               className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-secondary transition-colors group"
             >
               <span className="text-2xl group-hover:scale-110 transition-transform">✉️</span>
               <div>
                 <p className="font-semibold text-primary-dark">Email</p>
-                <p className="text-sm text-secondary break-all">contact@national-energy.cm</p>
+                <p className="text-sm text-secondary break-all">contact@national-energ.com</p>
               </div>
             </a>
             <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
@@ -253,169 +253,177 @@ const Mentions = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen font-dm">
-      
-      
-      {/* ========== HERO SECTION ========== */}
-<section 
-  className="relative bg-gradient-to-br from-[#1B5E20] via-[#2E7D32] to-[#388E3C] text-white py-24 md:py-32 overflow-hidden"
-  aria-labelledby="mentions-title"
->
-  {/* Image de fond avec overlay */}
-  <div 
-    className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
-    style={{ 
-      backgroundImage: "url('/images/mentions.png')",
-      filter: "brightness(0.9) contrast(1.1)"
-    }}
-    aria-hidden="true"
-  />
-  
-  {/* Overlay dégradé pour lisibilité */}
-  <div className="absolute inset-0 bg-gradient-to-t from-[#1B5E20]/90 via-[#1B5E20]/70 to-transparent" aria-hidden="true" />
-  
-  {/* Effets décoratifs */}
-  <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" aria-hidden="true" />
-  <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-2xl" aria-hidden="true" />
-  
-  {/* Contenu CENTRÉ */}
-  <div className="relative container-custom z-10 flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh] text-center">
-    
-    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6">
-      <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-      <span className="font-outfit text-xs font-semibold uppercase tracking-wider">Document juridique</span>
-    </div>
-    
-    <h1 
-      id="mentions-title"
-      className="font-outfit text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight max-w-4xl mx-auto"
-    >
-      Mentions légales
-    </h1>
-    
-    <p className="font-dm text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
-      Informations légales relatives à l'édition, l'hébergement et l'utilisation du site National Energy SARL.
-    </p>
-    
-    {/* Fil d'Ariane centré */}
-    <nav className="flex items-center justify-center gap-2 text-sm font-medium" aria-label="Fil d'Ariane">
-      <Link 
-        to="/" 
-        className="flex items-center gap-1 text-white/80 hover:text-white transition-colors"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-        Accueil
-      </Link>
-      <span className="text-white/40">/</span>
-      <span className="text-white">Mentions légales</span>
-    </nav>
-    
-  </div>
-</section>
+    <>
+      <Helmet>
+        <title>Mentions légales - National Energy Cameroun</title>
+        <meta name="description" content="Mentions légales du site National Energy : éditeur, hébergement, propriété intellectuelle, protection des données personnelles et conditions d'utilisation du site." />
+        <meta name="keywords" content="mentions légales National Energy, éditeur site, hébergement, propriété intellectuelle, protection données Cameroun" />
+        <link rel="canonical" href="https://national-energ.com/mentions" />
+        <meta name="robots" content="index, follow" />
+        
+        <meta property="og:title" content="Mentions légales - National Energy Cameroun" />
+        <meta property="og:description" content="Informations légales sur l'éditeur, l'hébergement et les conditions d'utilisation du site National Energy." />
+        <meta property="og:url" content="https://national-energ.com/mentions" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fr_FR" />
+        
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Mentions légales - National Energy" />
+        <meta name="twitter:description" content="Informations légales du site National Energy Cameroun." />
+      </Helmet>
 
-      {/* ========== TABLE DES MATIÈRES (Desktop) ========== */}
-      <div className="hidden lg:block bg-gray-50 border-b border-gray-200">
-        <div className="container-custom py-4">
-          <div className="flex items-center gap-6 overflow-x-auto scrollbar-thin">
-            <span className="font-outfit font-semibold text-primary-dark whitespace-nowrap">Sommaire :</span>
-            {articles.map((article) => (
-              <a
-                key={article.id}
-                href={`#${article.id}`}
-                className="text-sm text-gray-600 hover:text-secondary transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-secondary pb-1"
-              >
-                {article.title}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ========== CONTENU PRINCIPAL ========== */}
-      <main className="container-custom py-12 md:py-16">
-        <div className="max-w-4xl mx-auto">
+      <div className="bg-white min-h-screen font-dm">
+        
+        {/* ========== HERO SECTION ========== */}
+        <section 
+          className="relative bg-gradient-to-br from-[#1B5E20] via-[#2E7D32] to-[#388E3C] text-white py-24 md:py-32 overflow-hidden"
+          aria-labelledby="mentions-title"
+        >
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+            style={{ 
+              backgroundImage: "url('/images/mentions.png')",
+              filter: "brightness(0.9) contrast(1.1)"
+            }}
+            aria-hidden="true"
+          />
           
-          {articles.map((article, index) => (
-            <article 
-              key={article.id}
-              id={article.id}
-              className={`scroll-mt-24 mb-12 pb-8 ${index < articles.length - 1 ? 'border-b border-gray-200' : ''}`}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1B5E20]/90 via-[#1B5E20]/70 to-transparent" aria-hidden="true" />
+          
+          <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl" aria-hidden="true" />
+          <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-2xl" aria-hidden="true" />
+          
+          <div className="relative container-custom z-10 flex flex-col items-center justify-center min-h-[60vh] md:min-h-[70vh] text-center">
+            
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6">
+              <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
+              <span className="font-outfit text-xs font-semibold uppercase tracking-wider">Document juridique</span>
+            </div>
+            
+            <h1 
+              id="mentions-title"
+              className="font-outfit text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight max-w-4xl mx-auto"
             >
-              <h2 className="font-outfit text-xl md:text-2xl font-bold text-primary mb-5 flex items-center gap-3 group">
-                <span className="w-1.5 h-6 bg-gradient-to-b from-secondary to-[#1B5E20] rounded-full group-hover:scale-y-110 transition-transform" />
-                {article.title}
-              </h2>
-              <div className="pl-4">
-                {article.content}
-              </div>
-            </article>
-          ))}
-
-          {/* Date de mise à jour */}
-          <div className="mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="text-gray-500 text-sm font-dm">
-              Document conforme à la réglementation camerounaise en vigueur
+              Mentions légales
+            </h1>
+            
+            <p className="font-dm text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Informations légales relatives à l'édition, l'hébergement et l'utilisation du site National Energy SARL.
             </p>
-            <p className="text-gray-400 text-sm font-dm">
-              Dernière mise à jour : <time dateTime={new Date().toISOString()}>{new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-            </p>
+            
+            <nav className="flex items-center justify-center gap-2 text-sm font-medium" aria-label="Fil d'Ariane">
+              <Link 
+                to="/" 
+                className="flex items-center gap-1 text-white/80 hover:text-white transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Accueil
+              </Link>
+              <span className="text-white/40">/</span>
+              <span className="text-white">Mentions légales</span>
+            </nav>
+            
           </div>
+        </section>
 
-          {/* Bouton retour en haut */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="mt-8 inline-flex items-center gap-2 text-secondary hover:text-[#1B5E20] font-medium text-sm transition-colors"
-            aria-label="Retour en haut de page"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-            </svg>
-            Retour en haut
-          </button>
-
+        {/* ========== TABLE DES MATIÈRES (Desktop) ========== */}
+        <div className="hidden lg:block bg-gray-50 border-b border-gray-200">
+          <div className="container-custom py-4">
+            <div className="flex items-center gap-6 overflow-x-auto scrollbar-thin">
+              <span className="font-outfit font-semibold text-primary-dark whitespace-nowrap">Sommaire :</span>
+              {articles.map((article) => (
+                <a
+                  key={article.id}
+                  href={`#${article.id}`}
+                  className="text-sm text-gray-600 hover:text-secondary transition-colors whitespace-nowrap border-b-2 border-transparent hover:border-secondary pb-1"
+                >
+                  {article.title}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-      </main>
 
-      {/* ========== STYLES SUPPLÉMENTAIRES ========== */}
-      <style>{`
-        /* Smooth scroll pour les ancres */
-        html {
-          scroll-behavior: smooth;
-        }
-        
-        /* Scrollbar personnalisée pour le sommaire */
-        .scrollbar-thin::-webkit-scrollbar {
-          height: 6px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background: #cbd5e1;
-          border-radius: 3px;
-        }
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-          background: #94a3b8;
-        }
-        
-        /* Impression */
-        @media print {
-          .container-custom {
-            padding: 0 !important;
-            max-width: 100% !important;
+        {/* ========== CONTENU PRINCIPAL ========== */}
+        <main className="container-custom py-12 md:py-16">
+          <div className="max-w-4xl mx-auto">
+            
+            {articles.map((article, index) => (
+              <article 
+                key={article.id}
+                id={article.id}
+                className={`scroll-mt-24 mb-12 pb-8 ${index < articles.length - 1 ? 'border-b border-gray-200' : ''}`}
+              >
+                <h2 className="font-outfit text-xl md:text-2xl font-bold text-primary mb-5 flex items-center gap-3 group">
+                  <span className="w-1.5 h-6 bg-gradient-to-b from-secondary to-[#1B5E20] rounded-full group-hover:scale-y-110 transition-transform" />
+                  {article.title}
+                </h2>
+                <div className="pl-4">
+                  {article.content}
+                </div>
+              </article>
+            ))}
+
+            <div className="mt-12 pt-6 border-t border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <p className="text-gray-500 text-sm font-dm">
+                Document conforme à la réglementation camerounaise en vigueur
+              </p>
+              <p className="text-gray-400 text-sm font-dm">
+                Dernière mise à jour : <time dateTime={new Date().toISOString()}>{new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              </p>
+            </div>
+
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="mt-8 inline-flex items-center gap-2 text-secondary hover:text-[#1B5E20] font-medium text-sm transition-colors"
+              aria-label="Retour en haut de page"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+              Retour en haut
+            </button>
+
+          </div>
+        </main>
+
+        <style>{`
+          html {
+            scroll-behavior: smooth;
           }
-          a {
-            text-decoration: none !important;
-            color: inherit !important;
+          
+          .scrollbar-thin::-webkit-scrollbar {
+            height: 6px;
           }
-          .hidden-print {
-            display: none !important;
+          .scrollbar-thin::-webkit-scrollbar-track {
+            background: transparent;
           }
-        }
-      `}</style>
-    </div>
+          .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+          }
+          .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+          }
+          
+          @media print {
+            .container-custom {
+              padding: 0 !important;
+              max-width: 100% !important;
+            }
+            a {
+              text-decoration: none !important;
+              color: inherit !important;
+            }
+            .hidden-print {
+              display: none !important;
+            }
+          }
+        `}</style>
+      </div>
+    </>
   );
 };
 

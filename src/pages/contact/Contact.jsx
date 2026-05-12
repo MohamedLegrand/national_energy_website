@@ -1,5 +1,5 @@
-// src/pages/contact/Contact.jsx
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,10 +27,8 @@ const Contact = () => {
     setErrorMessage("");
 
     try {
-      // Petite pause pour simuler le traitement
       await new Promise((resolve) => setTimeout(resolve, 800));
 
-      // Construction du message WhatsApp
       const sujetLabels = {
         devis: "Demande de devis",
         partenariat: "Partenariat",
@@ -51,11 +49,9 @@ const Contact = () => {
 
       const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
 
-      // Marquer comme soumis, puis ouvrir WhatsApp
       setIsSubmitted(true);
       setFormData({ nom: "", email: "", telephone: "", sujet: "", message: "" });
 
-      // Ouvre WhatsApp dans un nouvel onglet
       window.open(waUrl, "_blank", "noopener,noreferrer");
 
       setTimeout(() => setIsSubmitted(false), 8000);
@@ -78,7 +74,7 @@ const Contact = () => {
   const contactInfo = {
     adresse: "Odza, montée collège Adventiste, Yaoundé, Cameroun",
     telephone: ["+237 699 122 963", "+237 659 285 166"],
-    email: ["contact@national-energy.cm", "commercial@national-energy.cm"],
+    email: ["contact@national-energ.com", "commercial@national-energ.com"],
     horaires: {
       lundiVendredi: "8h - 18h",
       samedi: "9h - 13h",
@@ -379,7 +375,6 @@ const Contact = () => {
         .cp-hours-time.open-time { color: #059669; font-weight: 600; }
         .cp-hours-time.closed-time { color: #DC2626; font-weight: 600; }
 
-        /* WhatsApp sidebar */
         .cp-wa-card {
           background: #fff;
           border-radius: 16px;
@@ -436,7 +431,6 @@ const Contact = () => {
         .cp-wa-btn-label { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; }
         .cp-wa-btn-sub { font-size: 11px; opacity: 0.7; margin-top: 1px; }
 
-        /* Formulaire */
         .cp-form-card {
           background: #fff;
           border-radius: 20px;
@@ -462,7 +456,6 @@ const Contact = () => {
 
         .cp-form-desc { font-size: 14px; color: #6B7280; line-height: 1.6; }
 
-        /* Badge WhatsApp dans le header formulaire */
         .cp-form-wa-hint {
           display: inline-flex;
           align-items: center;
@@ -586,7 +579,6 @@ const Contact = () => {
 
         .cp-note { font-size: 12px; color: #9CA3AF; text-align: center; margin-top: 14px; }
 
-        /* Carte */
         .cp-map-section { margin-top: 40px; }
 
         .cp-map-header {
@@ -671,7 +663,6 @@ const Contact = () => {
         .cp-map-directions:hover { background: #0D3026; color: #fff; border-color: #0D3026; }
         .cp-map-directions svg { width: 13px; height: 13px; }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
           .cp-grid { grid-template-columns: 1fr; }
           .cp-sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; }
@@ -696,6 +687,21 @@ const Contact = () => {
       `}</style>
 
       <div className="cp-page">
+        <Helmet>
+          <title>Contact National Energy - Tél: +237 699 122 963 | Yaoundé</title>
+          <meta name="description" content="Contactez National Energy à Yaoundé. Téléphone: +237 699 122 963 / +237 659 285 166. Email: contact@national-energ.com. Adresse: Odza, montée collège Adventiste." />
+          <meta name="keywords" content="contact National Energy, téléphone National Energy Yaoundé, email National Energy, station essence contact, devis carburant Cameroun" />
+          <link rel="canonical" href="https://national-energ.com/contact" />
+          <meta name="robots" content="index, follow" />
+          <meta property="og:title" content="Contact National Energy - Tél: +237 699 122 963" />
+          <meta property="og:description" content="Contactez National Energy à Yaoundé pour vos questions sur carburants, lavage, graissage ou partenariat." />
+          <meta property="og:url" content="https://national-energ.com/contact" />
+          <meta property="og:type" content="website" />
+          <meta property="og:locale" content="fr_FR" />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:title" content="Contact National Energy" />
+          <meta name="twitter:description" content="Contactez National Energy à Yaoundé" />
+        </Helmet>
 
         {/* HERO */}
         <section className="cp-hero">
@@ -755,7 +761,7 @@ const Contact = () => {
               </div>
               <div>
                 <div className="cp-stat-label">Email</div>
-                <div className="cp-stat-value">contact@national-energy.cm</div>
+                <div className="cp-stat-value">contact@national-energ.com</div>
               </div>
             </div>
             <div className="cp-stat-card">
@@ -872,7 +878,7 @@ const Contact = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                     <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
@@ -1008,7 +1014,6 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        {/* Icône WhatsApp */}
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: 20, height: 20, fill: "white", flexShrink: 0 }}>
                           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>

@@ -1,6 +1,51 @@
+import { Helmet } from "react-helmet-async";
+
 const Apropos = () => {
   return (
     <>
+      <Helmet>
+        <title>À propos - National Energy | Leader distribution carburant Cameroun</title>
+        <meta name="description" content="Découvrez National Energy, leader dans la distribution de produits pétroliers au Cameroun. Dirigée par M. Keedi Jean Joel, notre mission : une énergie nationale pour un Cameroun prospère." />
+        <meta name="keywords" content="National Energy Cameroun, distribution carburant, produits pétroliers Yaoundé, Keedi Jean Joel, station essence à propos" />
+        <link rel="canonical" href="https://national-energ.com/apropos" />
+        <meta name="robots" content="index, follow" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="À propos - National Energy Cameroun" />
+        <meta property="og:description" content="Leader dans la distribution de produits pétroliers au Cameroun. Qualité, proximité et engagement." />
+        <meta property="og:url" content="https://national-energ.com/apropos" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:image" content="https://national-energ.com/images/propos.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="À propos - National Energy Cameroun" />
+        <meta name="twitter:description" content="Leader dans la distribution de produits pétroliers au Cameroun." />
+        
+        {/* Données structurées */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "À propos de National Energy",
+            "description": "National Energy est une entreprise camerounaise spécialisée dans la distribution de produits pétroliers de qualité.",
+            "url": "https://national-energ.com/apropos",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "National Energy",
+              "founder": "M. Keedi Jean Joel",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Montée Collège Adventiste, Odza",
+                "addressLocality": "Yaoundé",
+                "addressCountry": "CM"
+              }
+            }
+          })}
+        </script>
+      </Helmet>
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap');
 
